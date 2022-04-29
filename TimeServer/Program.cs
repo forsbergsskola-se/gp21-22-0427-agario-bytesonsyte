@@ -1,5 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Text;
+
 namespace TimeServer
 {
     public static class TCPListenerProgram
@@ -15,6 +17,10 @@ namespace TimeServer
             {
                 var acceptTcpClient = tcpListener.AcceptTcpClient();
                 acceptTcpClient.GetStream().Read(new byte[100], 0, 100);
+                
+                var comment = Encoding.ASCII.GetString(new byte[100]);
+                Console.WriteLine($"New comment from Client: {comment}");
+
             }
         }
 
