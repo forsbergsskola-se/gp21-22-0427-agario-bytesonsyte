@@ -1,45 +1,15 @@
-﻿namespace TimeServer
+﻿using System.Net;
+using System.Net.Sockets;
+namespace TimeServer
 {
-    public class TcpListener
+    public static class TCPListenerProgram
     {
         static void Main(string[] args)
         {
-
-        }
-    
-    
-        System.Net.Sockets.TcpListener TCPListener0 = new System.Net.Sockets.TcpListener(0)
-        {
-            ExclusiveAddressUse = false
-        };
-
-        public TCPClient AcceptTCPClient()
-        {
-            
-            return new TCPClient();
-
+            var endpoint = new IPEndPoint(IPAddress.Loopback, 44444); // server IP = 127.0.0.1
+            var tcpListener = new TcpListener(endpoint);
         }
 
-        private void Start()
-        {
-            TCPListener0.Start();
-        }
-
-        public void Stop()
-        {
-            TCPListener0.Stop();
-        
-        }
     }
-
-    public class TCPClient
-    {
-    
-    }
-
-    public class Stream
-    {
-    
-    } 
 }
 
