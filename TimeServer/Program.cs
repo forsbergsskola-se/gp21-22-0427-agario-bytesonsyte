@@ -15,10 +15,11 @@ namespace TimeServer
 
             while (true)
             {
+                var bufferSize = new byte[100];
                 var acceptTcpClient = tcpListener.AcceptTcpClient();
-                acceptTcpClient.GetStream().Read(new byte[100], 0, 100);
+                acceptTcpClient.GetStream().Read(bufferSize, 0, 100);
                 
-                var comment = Encoding.ASCII.GetString(new byte[100]);
+                var comment = Encoding.ASCII.GetString(bufferSize);
                 Console.WriteLine($"New comment from Client: {comment}");
 
             }
