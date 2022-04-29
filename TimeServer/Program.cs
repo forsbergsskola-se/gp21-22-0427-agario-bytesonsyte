@@ -13,7 +13,8 @@ namespace TimeServer
 
             while (true)
             {
-                
+                var acceptTcpClient = tcpListener.AcceptTcpClient();
+                acceptTcpClient.GetStream().Read(new byte[100], 0, 100);
             }
         }
 
