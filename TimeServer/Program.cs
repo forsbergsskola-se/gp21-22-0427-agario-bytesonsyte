@@ -38,7 +38,9 @@ namespace TimeServer
         {
             new Thread(() =>
             {
-                Console.WriteLine($"Cline {tcpClient.Client.RemoteEndPoint} connected"); // client ID print
+
+                var clientID = tcpClient.Client.RemoteEndPoint;
+                Console.WriteLine($"Cline {clientID} connected"); // client ID print
                 
                 // set up stream and relevant helper classes
                 var stream = tcpClient.GetStream(); // so we can read and write data from the stream
@@ -75,7 +77,7 @@ namespace TimeServer
                             break;
                     }
                 }
-                
+
                 void EvaluateMove(string playerMove, string aiMove)
                 {
                     streamWriter.Write($"You chose {playerMove}. The AI chose {aiMove}...");
@@ -109,7 +111,6 @@ namespace TimeServer
                             PlayerLose();
                             break;
                     }
-
                 }
                 
                 void PlayerWin()
@@ -121,6 +122,9 @@ namespace TimeServer
                 {
                     throw new NotImplementedException();
                 }
+
+                Console.WriteLine($"Closing the connection to {clientID}");
+                tcpClient.Dispose();
                 
             }).Start();
         }
@@ -138,8 +142,7 @@ namespace TimeServer
                 
             var currentTime = Encoding.ASCII.GetBytes(DateTime.Now.ToString(CultureInfo.CurrentCulture));
             tcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
-                
-            tcpClient.Dispose();
+            tcpClient.Close();
         }
     }
 }
