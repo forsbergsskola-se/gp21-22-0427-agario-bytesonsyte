@@ -74,21 +74,60 @@ namespace TimeServer
                             streamWriter.WriteLine("Invalid input. Try again.");
                             break;
                     }
-                    
-                    
-                    
-                    
+                }
+                
+                void EvaluateMove(string playerMove, string aiMove)
+                {
+                    streamWriter.Write($"You chose {playerMove}. The AI chose {aiMove}...");
+                    if (playerMove == aiMove)
+                    {
+                        streamWriter.WriteLine("You were equally matched. Try again."); return;
+                    }
+
+                    switch (playerMove)
+                    {
+                        case "Fire" when aiMove == "Grass":
+                            PlayerWin();
+                            break;
+                        case "Fire":
+                            PlayerLose();
+                            break;
+                        
+                        
+                        case "Grass" when aiMove == "Water":
+                            PlayerWin();
+                            break;
+                        case "Grass":
+                            PlayerLose();
+                            break;
+                        
+                        
+                        case "Water" when aiMove == "Fire":
+                            PlayerWin();
+                            break;
+                        case "Water":
+                            PlayerLose();
+                            break;
+                    }
+
+                }
+                
+                void PlayerWin()
+                {
+                    throw new NotImplementedException();
+                }
+                
+                void PlayerLose()
+                {
+                    throw new NotImplementedException();
                 }
                 
             }).Start();
         }
 
-        private static void EvaluateMove(string playerMove, string aiMove)
-        {
-            
-        }
-        
-        
+       
+
+
         private static void SimpleConnectStreamProgram(TcpListener tcpListener, TcpClient tcpClient)
         {
             var bufferSize = new byte[100];
