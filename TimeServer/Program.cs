@@ -26,7 +26,8 @@ namespace TimeServer
                 Console.WriteLine("Waiting for connection...");            
                 var tcpClient = tcpListener.AcceptTcpClient();
 
-                IterationOne(tcpListener, tcpClient);
+                //IterationOne(tcpListener, tcpClient);
+                IterationTwo(tcpListener, tcpClient);
             }
         }
 
@@ -42,6 +43,11 @@ namespace TimeServer
             tcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
                 
             tcpClient.Dispose();
+        }
+
+        private static void IterationTwo(TcpListener tcpListener, TcpClient tcpClient)
+        {
+            
         }
     }
 }
