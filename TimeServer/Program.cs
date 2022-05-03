@@ -89,48 +89,49 @@ namespace TimeServer
                     switch (playerMove)
                     {
                         case "Fire" when aiMove == "Grass":
-                            PlayerWin();
+                            CalculateScore(playerScore, "Player");
                             break;
                         case "Fire":
-                            PlayerLose();
+                            CalculateScore(aiScore, "AI");
                             break;
                         
                         
                         case "Grass" when aiMove == "Water":
-                            PlayerWin();
+                            CalculateScore(playerScore, "Player");
+
                             break;
                         case "Grass":
-                            PlayerLose();
+                            CalculateScore(aiScore, "AI");
                             break;
                         
                         
                         case "Water" when aiMove == "Fire":
-                            PlayerWin();
+                            CalculateScore(playerScore, "Player");
                             break;
                         case "Water":
-                            PlayerLose();
+                            CalculateScore(aiScore, "AI");
                             break;
                     }
                 }
-                
-                void PlayerWin()
-                {
-                    throw new NotImplementedException();
-                }
-                
-                void PlayerLose()
-                {
-                    throw new NotImplementedException();
-                }
 
+                void CalculateScore(int winner, string winnerID)
+                {
+                    if (winner == playerScore)
+                        playerScore++;
+                    else
+                        aiScore++;
+
+                    streamWriter.WriteLine($"The {winnerID} won");
+                    streamWriter.WriteLine($"Scores: {playerScore} - AI: {aiScore}");
+                    
+                }
+                
                 Console.WriteLine($"Closing the connection to {clientID}");
                 tcpClient.Dispose();
                 
             }).Start();
         }
-
-       
-
+        
 
         private static void SimpleConnectStreamProgram(TcpListener tcpListener, TcpClient tcpClient)
         {
