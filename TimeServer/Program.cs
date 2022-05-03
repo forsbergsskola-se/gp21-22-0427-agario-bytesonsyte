@@ -29,12 +29,12 @@ namespace TimeServer
                 var tcpClient = tcpListener.AcceptTcpClient();
 
                 //IterationOne(tcpListener, tcpClient);
-                SimplePokémonGame(tcpListener, tcpClient);
+                StartSimplePokémonGame(tcpListener, tcpClient);
             }
         }
         
 
-        private static void SimplePokémonGame(TcpListener tcpListener, TcpClient tcpClient)
+        private static void StartSimplePokémonGame(TcpListener tcpListener, TcpClient tcpClient)
         {
             new Thread(() =>
             {
@@ -50,19 +50,19 @@ namespace TimeServer
 
                 streamWriter.AutoFlush = true; // tool to flush stream buffer after every Write(Char) call
                 
-                var options = new[] {"Water, Fire, Grass"};
                 streamWriter.WriteLine("Welcome to the elemental game! Choose either 'Fire', 'Grass' or 'Water'.");
-                streamWriter.WriteLine("If you want to quit though, write 'Exit'")
+                streamWriter.WriteLine("If you want to quit though, write 'Exit'");
                     
-                var random = new Random();
-                int playerScore = 0;
-                int aiScore = 0;
+                var playerScore = 0;
+                var aiScore = 0;
 
                 while (true)
                 {
                     if (input == "Exit")
                         break;
                     
+                    var options = new[] {"Water", "Fire", "Grass"};
+                    var random = new Random();
                     var randomOption = random.Next(0, options.Length);
                     var aiRandomChoice = options[randomOption];
                     
@@ -136,6 +136,8 @@ namespace TimeServer
                     
                 }
                 
+                
+                // once while loop has been broken (player client has quit)
                 Console.WriteLine($"Closing the connection to {clientID}");
                 tcpClient.Dispose(); // end sessions
                 
