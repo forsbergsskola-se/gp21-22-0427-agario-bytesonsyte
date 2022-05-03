@@ -23,14 +23,26 @@ namespace TimeServer
             
             while (true)
             {
-                Console.WriteLine("Waiting for connection...");            
+                Console.WriteLine("Waiting for connection..."); 
+                // a client will soon hopefully establish and return a connection          
                 var tcpClient = tcpListener.AcceptTcpClient();
 
                 //IterationOne(tcpListener, tcpClient);
                 IterationTwo(tcpListener, tcpClient);
             }
         }
+        
 
+        private static void IterationTwo(TcpListener tcpListener, TcpClient tcpClient)
+        {
+            new Thread(() =>
+            {
+                Console.WriteLine($"Cline {tcpClient.Client.RemoteEndPoint} connected"); // client name print
+                
+            }).Start();
+        }
+        
+        
         private static void IterationOne(TcpListener tcpListener, TcpClient tcpClient)
         {
             var bufferSize = new byte[100];
@@ -43,14 +55,6 @@ namespace TimeServer
             tcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
                 
             tcpClient.Dispose();
-        }
-
-        private static void IterationTwo(TcpListener tcpListener, TcpClient tcpClient)
-        {
-            new Thread(() =>
-            {
-                
-            }).Start();
         }
     }
 }
