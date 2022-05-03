@@ -9,11 +9,18 @@ namespace TimeServer
     {
         private static void Main(string[] args)
         {
-            var endpoint = new IPEndPoint(IPAddress.Loopback, 44444); // server IP = 127.0.0.1
-            var tcpListener = new TcpListener(endpoint);
-            if (true)
-                tcpListener.Start();
+            const bool any = false;
+            
+            var anyEndpoint = new IPEndPoint(IPAddress.Any, 44444); // listen on any given socket
+            var loopbackEndpoint = new IPEndPoint(IPAddress.Loopback, 44444); // listen on loopback... server IP = 127.0.0.1
+            
+            var tcpListener = new TcpListener(loopbackEndpoint);
+            if (any) // toggle
+                tcpListener = new TcpListener(anyEndpoint);
+            tcpListener.Start();
 
+            Console.WriteLine($"Server listening on : {tcpListener.LocalEndpoint}");
+            
             while (true)
             {
                 IterationOne(tcpListener);
