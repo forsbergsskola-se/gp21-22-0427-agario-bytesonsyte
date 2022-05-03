@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace TimeServer
 {
@@ -10,21 +8,16 @@ namespace TimeServer
     {
         private static void Main(string[] args)
         {
-            const bool any = false;
-            
-            var anyEndpoint = new IPEndPoint(IPAddress.Any, 44444); // listen on any given socket
-            var loopbackEndpoint = new IPEndPoint(IPAddress.Loopback, 44444); // listen on loopback... server IP = 127.0.0.1
-            
-            var tcpListener = new TcpListener(loopbackEndpoint);
-            if (any) // toggle
-                tcpListener = new TcpListener(anyEndpoint);
+            var anyEndpoint = new IPEndPoint(IPAddress.Any, 44444); // originally used loopback
+            var tcpListener = new TcpListener(anyEndpoint);
+
             tcpListener.Start();
 
             Console.WriteLine($"Server listening on : {tcpListener.LocalEndpoint}");
-            
+
             while (true)
             {
-                Console.WriteLine("Waiting for connection..."); 
+                Console.WriteLine("Waiting for connection...");
                 // a client will soon hopefully establish and return a connection          
                 var tcpClient = tcpListener.AcceptTcpClient();
 
@@ -78,13 +71,15 @@ namespace TimeServer
                         PlayHarryokémon(streamWriter, input);
                         break;
                     case "2":
-                        StartTimeServer(tcpListener, tcpClient);
+                        StartTimeServer(streamWriter, input, tcpListener, tcpClient);
                         break;
                     
                     default:
                         InvalidInput(streamWriter);
                         break;
                 }
+                
+                tcpClient.Dispose();
             }
         }
         
@@ -93,10 +88,10 @@ namespace TimeServer
         [SuppressMessage("ReSharper", "IdentifierTypo")]
         private static void PlayHarryokémon(TextWriter streamWriter, string input)
         {
+            // TODO: Add Player and AI name options
+
             streamWriter.WriteLine("Welcome to Harryokémon! Choose either 'Fire', 'Grass' or 'Water'.");
             streamWriter.WriteLine("If you want to quit though, write 'Exit'");
-            
-            // TODO: Add Player and AI name options
             
             var playerScore = 0;
             var aiScore = 0;
@@ -110,7 +105,8 @@ namespace TimeServer
                 var random = new Random();
                 var randomOption = random.Next(0, options.Length);
                 var aiRandomChoice = options[randomOption];
-                    
+                
+                
                 switch (input)
                 {
                     case "Fire":
@@ -131,25 +127,36 @@ namespace TimeServer
             }
         }
 
-        
-        
-        private static void StartTimeServer(TcpListener tcpListener, TcpClient tcpClient)
+
+
+        private static void StartTimeServer(TextWriter streamWriter, string input, IDisposable tcpClient)
         {
-            Console.WriteLine($"Client {tcpClient.Client.RemoteEndPoint} connected!");
-            var bufferSize = new byte[100];
-            tcpClient.GetStream().Read(bufferSize, 0, 100);
+            while (true)
+            {
+                streamWriter.Write($"The current server time is: {DateTime.Now}.");
+                streamWriter.Write("Would you like to check it again? (Y/N/)");
 
-            var comment = Encoding.ASCII.GetString(bufferSize);
-            Console.WriteLine($"New comment from Client: {comment}");
-
-            var currentTime = Encoding.ASCII.GetBytes(DateTime.Now.ToString(CultureInfo.CurrentCulture));
-            tcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
-            tcpClient.Close();
-            tcpListener.Stop();
+                switch (input)
+                {
+                    case "Y":                     
+                        streamWriter.WriteLine($"The server time has updated to: {DateTime.Now}");
+                        break;
+                    
+                    case "N":
+                        streamWriter.WriteLine("Exiting TimeSever...");
+                        break;
+                    
+                    default:
+                        InvalidInput(streamWriter);
+                        break;
+                }
+                
+                tcpClient.Dispose();
+            }
         }
-        
-        
-        
+
+
+
         private static void InvalidInput(TextWriter streamWriter)
         {
             streamWriter.WriteLine("Invalid input. Try again.");
@@ -184,7 +191,6 @@ namespace TimeServer
 
                 case "Grass" when aiMove == "Water":
                     CalculateScore(streamWriter, playerScore, "Player", aiScore);
-
                     break;
                 case "Grass":
                     CalculateScore(streamWriter, aiScore, "AI", playerScore);
