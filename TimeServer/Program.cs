@@ -93,10 +93,10 @@ namespace TimeServer
         [SuppressMessage("ReSharper", "IdentifierTypo")]
         private static void PlayHarryokémon(TextWriter streamWriter, string input)
         {
-            // TODO: Add Player and AI name options
-                
-            streamWriter.WriteLine("Welcome to the elemental game! Choose either 'Fire', 'Grass' or 'Water'.");
+            streamWriter.WriteLine("Welcome to Harryokémon! Choose either 'Fire', 'Grass' or 'Water'.");
             streamWriter.WriteLine("If you want to quit though, write 'Exit'");
+            
+            // TODO: Add Player and AI name options
             
             var playerScore = 0;
             var aiScore = 0;
@@ -131,6 +131,23 @@ namespace TimeServer
             }
         }
 
+        
+        
+        private static void StartTimeServer(TcpListener tcpListener, TcpClient tcpClient)
+        {
+            Console.WriteLine($"Client {tcpClient.Client.RemoteEndPoint} connected!");
+            var bufferSize = new byte[100];
+            tcpClient.GetStream().Read(bufferSize, 0, 100);
+
+            var comment = Encoding.ASCII.GetString(bufferSize);
+            Console.WriteLine($"New comment from Client: {comment}");
+
+            var currentTime = Encoding.ASCII.GetBytes(DateTime.Now.ToString(CultureInfo.CurrentCulture));
+            tcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
+            tcpClient.Close();
+            tcpListener.Stop();
+        }
+        
         
         
         private static void InvalidInput(TextWriter streamWriter)
@@ -193,22 +210,6 @@ namespace TimeServer
 
             streamWriter.WriteLine($"The {winnerID} won");
             streamWriter.WriteLine($"Scores: {winnerScore} - AI: {loserScore}");
-        }
-
-
-        private static void StartTimeServer(TcpListener tcpListener, TcpClient tcpClient)
-        {
-            Console.WriteLine($"Client {tcpClient.Client.RemoteEndPoint} connected!");
-            var bufferSize = new byte[100];
-            tcpClient.GetStream().Read(bufferSize, 0, 100);
-
-            var comment = Encoding.ASCII.GetString(bufferSize);
-            Console.WriteLine($"New comment from Client: {comment}");
-
-            var currentTime = Encoding.ASCII.GetBytes(DateTime.Now.ToString(CultureInfo.CurrentCulture));
-            tcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
-            tcpClient.Close();
-            tcpListener.Stop();
         }
     }
 }
