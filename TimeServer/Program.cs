@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Data;
+using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -43,6 +44,7 @@ namespace TimeServer
                 var stream = tcpClient.GetStream(); // so we can read and write data from the stream
                 var streamReader = new StreamReader(stream); // this negates using encoding.ASCII; easier writing to stream
                 var streamWriter = new StreamWriter(stream);
+                var input = streamReader.ReadLine();
 
                 streamWriter.AutoFlush = true; // tool to flush stream buffer after every Write(Char) call
                 
@@ -55,10 +57,35 @@ namespace TimeServer
 
                 while (true)
                 {
+                    if (input == "Exit")
+                        break;
+                    
+                    var randomOption = random.Next(0, options.Length);
+                    var aiRandomChoice = options[randomOption];
+                    switch (input)
+                    {
+                        case "Fire":
+                        case "Grass":
+                        case "Water":
+                            EvaluateMove(input, aiRandomChoice);
+                            break;
+                        
+                        default:
+                            streamWriter.WriteLine("Invalid input. Try again.");
+                            break;
+                    }
+                    
+                    
+                    
                     
                 }
                 
             }).Start();
+        }
+
+        private static void EvaluateMove(string playerMove, string aiMove)
+        {
+            
         }
         
         
