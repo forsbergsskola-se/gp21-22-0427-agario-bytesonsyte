@@ -47,7 +47,10 @@ namespace TimeServer
 
         private static void IterationTwo(TcpListener tcpListener, TcpClient tcpClient)
         {
-            
+            new Thread(() =>
+            {
+                
+            }).Start();
         }
     }
 }
