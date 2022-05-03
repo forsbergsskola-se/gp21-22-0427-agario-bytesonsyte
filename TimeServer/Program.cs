@@ -47,8 +47,9 @@ namespace TimeServer
                 var streamReader = new StreamReader(stream); // this negates using encoding.ASCII; easier writing to stream
                 var streamWriter = new StreamWriter(stream);
                 var input = streamReader.ReadLine();
-
                 streamWriter.AutoFlush = true; // tool to flush stream buffer after every Write(Char) call
+                
+                // TODO: Add Player and AI name options
                 
                 streamWriter.WriteLine("Welcome to the elemental game! Choose either 'Fire', 'Grass' or 'Water'.");
                 streamWriter.WriteLine("If you want to quit though, write 'Exit'");
@@ -78,6 +79,12 @@ namespace TimeServer
                             streamWriter.WriteLine("Invalid input. Try again.");
                             break;
                     }
+                    
+                    // TODO: try to catch the client if the server crashes 
+                    // TODO: try to catch the client + socket variable if the socket is in use
+                    // TODO: might want to read from the stream asynchronously and/or on a separate thread for realtime scenarios
+                    
+
                 }
 
                 void EvaluateMove(string playerMove, string aiMove)
