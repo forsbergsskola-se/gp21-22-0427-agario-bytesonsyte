@@ -52,7 +52,8 @@ namespace TimeServer
                 
                 var options = new[] {"Water, Fire, Grass"};
                 streamWriter.WriteLine("Welcome to the elemental game! Choose either 'Fire', 'Grass' or 'Water'.");
-                streamWriter.WriteLine("If you want to quit though, write 'Exit'");
+                streamWriter.WriteLine("If you want to quit though, write 'Exit'")
+                    
                 var random = new Random();
                 int playerScore = 0;
                 int aiScore = 0;
@@ -64,6 +65,7 @@ namespace TimeServer
                     
                     var randomOption = random.Next(0, options.Length);
                     var aiRandomChoice = options[randomOption];
+                    
                     switch (input)
                     {
                         case "Fire":
@@ -81,13 +83,17 @@ namespace TimeServer
                 void EvaluateMove(string playerMove, string aiMove)
                 {
                     streamWriter.Write($"You chose {playerMove}. The AI chose {aiMove}...");
+                    
                     if (playerMove == aiMove)
                     {
-                        streamWriter.WriteLine("You were equally matched. Try again."); return;
+                        streamWriter.WriteLine("You were equally matched. Try again."); 
+                        return;
                     }
 
                     switch (playerMove)
                     {
+                        // Fire choice logic
+                        
                         case "Fire" when aiMove == "Grass":
                             CalculateScore(playerScore, "Player");
                             break;
@@ -95,6 +101,8 @@ namespace TimeServer
                             CalculateScore(aiScore, "AI");
                             break;
                         
+                        
+                        // Grass choice logic
                         
                         case "Grass" when aiMove == "Water":
                             CalculateScore(playerScore, "Player");
@@ -104,6 +112,8 @@ namespace TimeServer
                             CalculateScore(aiScore, "AI");
                             break;
                         
+                        
+                        // Water choice logic
                         
                         case "Water" when aiMove == "Fire":
                             CalculateScore(playerScore, "Player");
@@ -127,7 +137,7 @@ namespace TimeServer
                 }
                 
                 Console.WriteLine($"Closing the connection to {clientID}");
-                tcpClient.Dispose();
+                tcpClient.Dispose(); // end sessions
                 
             }).Start();
         }
