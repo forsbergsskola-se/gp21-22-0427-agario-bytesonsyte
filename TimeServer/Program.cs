@@ -71,7 +71,7 @@ namespace TimeServer
                         PlayHarryokémon(streamWriter, input);
                         break;
                     case "2":
-                        StartTimeServer(streamWriter, input, tcpListener, tcpClient);
+                        StartTimeServer(streamWriter, input, tcpClient);
                         break;
                     
                     default:
