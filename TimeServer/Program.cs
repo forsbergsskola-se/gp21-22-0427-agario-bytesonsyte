@@ -37,8 +37,15 @@ namespace TimeServer
         {
             new Thread(() =>
             {
-                Console.WriteLine($"Cline {tcpClient.Client.RemoteEndPoint} connected"); // client name print
+                Console.WriteLine($"Cline {tcpClient.Client.RemoteEndPoint} connected"); // client ID print
                 
+                // set up stream and relevant helper classes
+                var stream = tcpClient.GetStream(); // so we can read and write data from the stream
+                var streamReader = new StreamReader(stream); // this negates using encoding.ASCII; easier writing to stream
+                var streamWriter = new StreamWriter(stream);
+
+                streamWriter.AutoFlush = true; // tool to flush stream buffer after every Write(Char) call 
+
             }).Start();
         }
         
