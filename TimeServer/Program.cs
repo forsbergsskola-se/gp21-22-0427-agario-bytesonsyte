@@ -16,18 +16,23 @@ namespace TimeServer
 
             while (true)
             {
-                var bufferSize = new byte[100];
-                var acceptTcpClient = tcpListener.AcceptTcpClient();
-                acceptTcpClient.GetStream().Read(bufferSize, 0, 100);
-                
-                var comment = Encoding.ASCII.GetString(bufferSize);
-                Console.WriteLine($"New comment from Client: {comment}");
-                
-                var currentTime = Encoding.ASCII.GetBytes(DateTime.Now.ToString(CultureInfo.CurrentCulture));
-                acceptTcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
-                
-                acceptTcpClient.Close();
+                IterationOne(tcpListener);
             }
+        }
+
+        private static void IterationOne(TcpListener tcpListener)
+        {
+            var bufferSize = new byte[100];
+            var acceptTcpClient = tcpListener.AcceptTcpClient();
+            acceptTcpClient.GetStream().Read(bufferSize, 0, 100);
+                
+            var comment = Encoding.ASCII.GetString(bufferSize);
+            Console.WriteLine($"New comment from Client: {comment}");
+                
+            var currentTime = Encoding.ASCII.GetBytes(DateTime.Now.ToString(CultureInfo.CurrentCulture));
+            acceptTcpClient.GetStream().Write(currentTime, 0, currentTime.Length);
+                
+            acceptTcpClient.Close();
         }
     }
 }
