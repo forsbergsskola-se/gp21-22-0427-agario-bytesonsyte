@@ -1,22 +1,37 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using TMPro;
 using UnityEngine;
 
 public class RequestServerTime : MonoBehaviour
 {
+    private TMP_Text Output;
+    private const int port = 3333;
+    private readonly string loopback = IPAddress.Loopback.ToString();
+
+    public void Awake()
+    {
+        Output = GameObject.Find("Time Output Text").GetComponent<TMP_Text>();
+    }
+
     public void SendRequest()
     {
-        var Endpoint = new IPEndPoint(IPAddress.Loopback, 44);
-        var TcpClient = new TcpClient(Endpoint);
+        var TcpClient = new TcpClient(loopback, port);
+        TcpClient.Connect(loopback, port+1);
+        
+        var clientID = TcpClient.Client.RemoteEndPoint;
+        Debug.Log(clientID != null ? $"Client {clientID} connected" : "Error connecting to client");
+
+        //var streamWriter = new StreamWriter(Stream);
         var Stream = TcpClient.GetStream();
+        var BufferSize = new byte[TcpClient.ReceiveBufferSize];
+        Stream.Read(BufferSize, 0, BufferSize.Length);
         
-        var bufferSize = new byte[TcpClient.ReceiveBufferSize];
-        Stream.Read(bufferSize, 0, bufferSize.Length);
+        var Response = Encoding.ASCII.GetString(BufferSize);
+        Debug.Log(Response);
+        Output.text = $"Current time: {Response}";
         
-        var response = Encoding.ASCII.GetString(bufferSize);
-        Debug.Log(response);
-        // print to text
         TcpClient.Close();
     }
 }
