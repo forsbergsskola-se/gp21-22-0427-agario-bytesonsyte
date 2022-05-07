@@ -339,10 +339,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4294211381643597275, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
       propertyPath: m_Name
-      value: Request Time Button
+      value: Request Server Time
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+--- !u!1 &3298480900973630165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4294211381643597275, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+  m_PrefabInstance: {fileID: 1611889100317509390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3120725857085821222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298480900973630165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ce5bc24a1d0fc4082b60d5e5043c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3298480900973630166 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4294211381643597272, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
