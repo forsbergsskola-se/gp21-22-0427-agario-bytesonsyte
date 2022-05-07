@@ -34,7 +34,7 @@ namespace TimeServer
             {
 
                 var clientID = tcpClient.Client.RemoteEndPoint;
-                Console.WriteLine($"Cline {clientID} connected"); // client ID print
+                Console.WriteLine($"Client {clientID} connected"); // client ID print
                 
                 GetStreamGoing(tcpListener, tcpClient);
                 
@@ -49,12 +49,10 @@ namespace TimeServer
         
         private static void GetStreamGoing(TcpListener tcpListener, TcpClient tcpClient)
         {
-            var clientID = tcpClient.Client.RemoteEndPoint;
-            Console.WriteLine($"Cline {clientID} connected"); // client ID print
                 
             // set up stream and relevant helper classes
             var stream = tcpClient.GetStream(); // so we can read and write data from the stream
-            var streamReader = new StreamReader(stream); // this negates using encoding.ASCII; easier writing to stream
+             // this negates using encoding.ASCII; easier writing to stream
             var streamWriter = new StreamWriter(stream);
             var input = streamReader.ReadLine();
             streamWriter.AutoFlush = true; // tool to flush stream buffer after every Write(Char) call
