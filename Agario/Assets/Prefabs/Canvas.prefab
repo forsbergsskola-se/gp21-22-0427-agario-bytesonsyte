@@ -337,6 +337,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4294211381643597273, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294211381643597273, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294211381643597273, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3120725857085821222}
+    - target: {fileID: 4294211381643597273, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294211381643597273, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SendRequest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294211381643597273, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RequestServerTime, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294211381643597273, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4294211381643597275, guid: 6b310d35029e5cc418fda026e2b4b840, type: 3}
       propertyPath: m_Name
       value: Request Server Time
