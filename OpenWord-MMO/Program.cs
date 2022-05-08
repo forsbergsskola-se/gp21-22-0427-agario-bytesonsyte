@@ -7,8 +7,8 @@ namespace OpenWord_MMO;
 internal static class OpenGameServer
 {
     private const byte MaxMessageCharSize = 20;
-    private static readonly IPEndPoint remoteEP = new IPEndPoint(IPAddress.Loopback, 3333);
-    private static readonly UdpClient udpClient = new UdpClient(remoteEP);
+    private static readonly IPEndPoint remoteEP = new (IPAddress.Loopback, 3333);
+    private static readonly UdpClient udpClient = new (remoteEP);
     private static string response = "";
 
     private static void Main()
