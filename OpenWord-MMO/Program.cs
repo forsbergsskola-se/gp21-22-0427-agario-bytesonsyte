@@ -17,18 +17,23 @@ internal static class OpenGameServer
         Console.WriteLine($"Server set up at port {remoteEP.Port.ToString()}");
         Console.WriteLine("Server ready & waiting to receive");
 
+
         while (true)
         {
             IPEndPoint? remoteEndpoint = default;
             var data = udpClient.Receive(ref remoteEndpoint);
             var messageString = Encoding.ASCII.GetString(data).Trim();
-            Console.WriteLine($"Number of characters of received message: {data.Length}");
+
 
             if (data.Length is > MaxMessageCharSize or 0 || messageString.Any(char.IsWhiteSpace))
             {
-                Console.WriteLine("Error: message is empty, over 20 characters or contained a whitespace");
-                continue;
+                Console.WriteLine($"Error: {udpClient}'s message is empty, over 20 characters or contained a whitespace");
+                    
+                var errorMessage = Encoding.ASCII.GetBytes("Error. Please adhere to the formatting rules when sending your message");
+                udpClient.Send(errorMessage);
             }
+            else
+                Console.WriteLine($"Accepted message \nNumber of characters of received message: {data.Length} ");
         }
     }
 }
