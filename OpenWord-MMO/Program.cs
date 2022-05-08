@@ -24,9 +24,9 @@ internal static class OpenGameServer
             var messageString = Encoding.ASCII.GetString(data).Trim();
             Console.WriteLine($"Number of characters of received message: {data.Length}");
 
-            if (data.Length > MaxMessageCharSize || messageString.Any(char.IsWhiteSpace))
+            if (data.Length is > MaxMessageCharSize or 0 || messageString.Any(char.IsWhiteSpace))
             {
-                Console.WriteLine("Error: message is over 20 characters or contained a whitespace");
+                Console.WriteLine("Error: message is empty, over 20 characters or contained a whitespace");
                 continue;
             }
         }
