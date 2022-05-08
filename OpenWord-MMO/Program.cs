@@ -27,13 +27,18 @@ internal static class OpenGameServer
 
             if (data.Length is > MaxMessageCharSize or 0 || messageString.Any(char.IsWhiteSpace))
             {
-                Console.WriteLine($"Error: {udpClient}'s message is empty, over 20 characters or contained a whitespace");
+                Console.WriteLine($"Denied message:\n{udpClient}'s message is empty, over 20 characters or contained a whitespace");
                     
                 var errorMessage = Encoding.ASCII.GetBytes("Error. Please adhere to the formatting rules when sending your message");
                 udpClient.Send(errorMessage);
             }
             else
-                Console.WriteLine($"Accepted message \nNumber of characters of received message: {data.Length} ");
+            {
+                Console.WriteLine($"Accepted message");
+                
+                var successMessage = Encoding.ASCII.GetBytes($"Accepted message\nNumber of characters of received message: {data.Length}");
+                udpClient.Send(successMessage);
+            }
         }
     }
 }
