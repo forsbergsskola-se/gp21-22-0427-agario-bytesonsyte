@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -10,10 +11,12 @@ namespace Assignments
     {
         private TMP_Text OutputField;
         private TMP_InputField InputField;
+        [SerializeField] private String SavedText;
         private void Awake()
         {
             OutputField = GameObject.FindGameObjectWithTag("Output").GetComponent<TMP_Text>();
             InputField = FindObjectOfType<TMP_InputField>();
+            SavedText = "";
         }
 
         public void OutputText()
@@ -25,8 +28,9 @@ namespace Assignments
             var input = InputField.text;
             //var inputBytes = Encoding.ASCII.GetBytes(InputField.text);
             //udpClient.Send(input, input.Length);
-
-            OutputField.text = input.ToString();
+            SavedText = SavedText + input + " ";
+            
+            OutputField.text = SavedText.ToString();
             InputField.text = ""; // clear field
         }
     }
