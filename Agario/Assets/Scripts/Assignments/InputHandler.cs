@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour
+namespace Assignments
 {
-    // Start is called before the first frame update
-    void Start()
+    public class InputHandler : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private TMP_Text OutputField;
+        private TMP_InputField InputField;
+        private void Awake()
+        {
+            OutputField = GameObject.Find("Output Text").GetComponent<TMP_Text>();
+            InputField = FindObjectOfType<TMP_InputField>();
+        }
     }
 }
