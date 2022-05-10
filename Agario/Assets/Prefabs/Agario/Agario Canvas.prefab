@@ -265,8 +265,77 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.3726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.3726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.5613208
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.5613208
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4193778437185043930}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitApplication
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Agario.UI.QuitGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136032949703367762, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+--- !u!1 &8108032708067085430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6136032949703367760, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
+  m_PrefabInstance: {fileID: 2711753835826581542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4193778437185043930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108032708067085430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9070ac3638bed334abe4497ea6742229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8108032708067085431 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6136032949703367761, guid: 53d951dba2f63124a83d5cdd2b8fbd7e, type: 3}
