@@ -5,6 +5,12 @@ namespace Agario.Player
 {
     public class Consume : MonoBehaviour
     {
+        private string PlayerName;
+        private void Start()
+        {
+            PlayerName = GetComponentInChildren<TMP_Text>().text;
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             var food = other.gameObject.CompareTag("Food");
@@ -12,7 +18,7 @@ namespace Agario.Player
             
             if (food)
             {
-                Debug.Log($"{gameObject.name} ate {other.gameObject.name}");
+                Debug.Log($"{PlayerName} ate {other.gameObject.name}");
                 Destroy(other.gameObject);
             }
         }
