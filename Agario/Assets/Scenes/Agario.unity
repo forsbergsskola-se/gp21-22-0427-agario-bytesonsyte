@@ -431,6 +431,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: effd46b76d17e8c43baac6accbaca366, type: 3}
+--- !u!1001 &2954844895973289497
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.9310236
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.1588275
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 624891914508971349, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 803349660217478806, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+      propertyPath: m_Name
+      value: Food Orb
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b1d475fcedb821f4c945573078267e51, type: 3}
 --- !u!1001 &4855018720956548657
 PrefabInstance:
   m_ObjectHideFlags: 0
