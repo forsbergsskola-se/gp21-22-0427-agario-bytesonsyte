@@ -20,9 +20,8 @@ namespace Agario.Player
 
             if (food)
             {
+                IncreasePlayerScale(other);
                 ConsumeFood(other);
-                //TODO: increase score
-                //TODO: inscrease size
                 return;
             }
             
@@ -38,8 +37,21 @@ namespace Agario.Player
             Destroy(other.gameObject);
         }
 
-        
-        
+
+        private static void IncreasePlayerScale(Collision2D other)
+        {
+            IncreasePlayerScore(other);
+        }
+
+
+
+        private static void IncreasePlayerScore(Collision2D other)
+        {
+            return;
+        }
+
+
+
         private void CalculateEnemyOutcome(Collision2D other)
         {
             var playerScale = transform.localScale.x;
@@ -50,8 +62,9 @@ namespace Agario.Player
             if (playerScale > enemyScale)
             {
                 Debug.Log($"{gameObject.name} ate {enemyName}");
+                
+                IncreasePlayerScale(other);
                 Destroy(other.gameObject);
-                //TODO: also consume enemy score
             }
             
             // It's a draw, both go free
