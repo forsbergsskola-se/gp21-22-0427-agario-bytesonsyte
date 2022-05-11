@@ -8,12 +8,9 @@ namespace Agario.Player
     {
         public float ScaleTolerance = 0.01f;
         private string PlayerName;
-        private int Score = 0;
-        private TMP_Text ScoreUI;
         private void Start()
         {
             PlayerName = GetComponentInChildren<TMP_Text>().text;
-            ScoreUI = FindObjectOfType<TextMeshProUGUI>().GetComponent<TMP_Text>();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -25,7 +22,7 @@ namespace Agario.Player
             if (food)
             {
                 var foodSize = other.gameObject.transform.localScale.x;
-                IncreasePlayerScale(other, playerScale, foodSize);
+                IncreasePlayerScale(playerScale, foodSize);
                 IncreasePlayerScore(other, true);
                 ConsumeFood(other);
                 return;
@@ -43,7 +40,7 @@ namespace Agario.Player
         }
 
 
-        private void IncreasePlayerScale(Collision2D other, float playerScale, float enemyScale)
+        private void IncreasePlayerScale(float playerScale, float enemyScale)
         {
             gameObject.transform.localScale += new Vector3(enemyScale, enemyScale, 0);
             var newScale = transform.localScale.x;
@@ -54,19 +51,10 @@ namespace Agario.Player
 
 
 
-        //TODO: MOVE TO SEPARATE SCRIPT
         private void IncreasePlayerScore(Collision2D other, bool food)
         {
-            if (other.gameObject.GetComponent<Consume>())
-            {
-                //TODO: Update this component
-                var enemyScore = other.gameObject.GetComponent<Consume>().Score;
-                Score = +enemyScore;
-            }
-            else
-                Score++;
-
-            ScoreUI.text = "Score: " + Score;
+            var enemyScore = other.gameObject.GetComponent<Consume>() ? other.gameObject.GetComponent<PlayerScore>().Score : 1;
+            GetComponent<PlayerScore>().IncreaseScore(enemyScore);
         }
 
 
@@ -81,7 +69,7 @@ namespace Agario.Player
             {
                 Debug.Log($"{gameObject.name} ate {enemyName}");
                 
-                IncreasePlayerScale(other, playerScale, enemyScale);
+                IncreasePlayerScale(playerScale, enemyScale);
                 IncreasePlayerScore(other, false);
                 Destroy(other.gameObject);
             }
