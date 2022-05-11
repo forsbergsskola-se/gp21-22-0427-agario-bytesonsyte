@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using TMPro;
 using UnityEngine;
 
@@ -9,9 +8,12 @@ namespace Agario.Player
     {
         public float ScaleTolerance = 0.01f;
         private string PlayerName;
+        private int Score = 0;
+        private TMP_Text ScoreUI;
         private void Start()
         {
             PlayerName = GetComponentInChildren<TMP_Text>().text;
+            ScoreUI = FindObjectOfType<TextMeshProUGUI>().GetComponent<TMP_Text>();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -24,6 +26,7 @@ namespace Agario.Player
             {
                 var foodSize = other.gameObject.transform.localScale.x;
                 IncreasePlayerScale(other, playerScale, foodSize);
+                IncreasePlayerScore(other, true);
                 ConsumeFood(other);
                 return;
             }
@@ -46,14 +49,22 @@ namespace Agario.Player
             newScale += new Vector3(enemyScale, enemyScale, 0);
 
             Debug.Log($"Player scale increased by {newScale.x - playerScale}");
-            IncreasePlayerScore(other);
         }
 
 
 
-        private static void IncreasePlayerScore(Collision2D other)
+        private void IncreasePlayerScore(Collision2D other, bool food)
         {
-            return;
+            if (food)
+                Score++;
+
+            else
+            {
+                var enemyScore = other.gameObject.GetComponent<Consume>().Score;
+                Score = +enemyScore;
+            }
+
+            ScoreUI.text = "Score: " + Score;
         }
 
 
@@ -69,6 +80,7 @@ namespace Agario.Player
                 Debug.Log($"{gameObject.name} ate {enemyName}");
                 
                 IncreasePlayerScale(other, playerScale, enemyScale);
+                IncreasePlayerScore(other, false);
                 Destroy(other.gameObject);
             }
             
