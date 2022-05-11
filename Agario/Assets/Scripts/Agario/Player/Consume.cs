@@ -45,24 +45,26 @@ namespace Agario.Player
 
         private void IncreasePlayerScale(Collision2D other, float playerScale, float enemyScale)
         {
-            var newScale = gameObject.transform.localScale;
-            newScale += new Vector3(enemyScale, enemyScale, 0);
+            gameObject.transform.localScale += new Vector3(enemyScale, enemyScale, 0);
+            var newScale = transform.localScale.x;
 
-            Debug.Log($"Player scale increased by {newScale.x - playerScale}");
+
+            Debug.Log($"Player scale increased by {newScale - playerScale}");
         }
 
 
 
+        //TODO: MOVE TO SEPARATE SCRIPT
         private void IncreasePlayerScore(Collision2D other, bool food)
         {
-            if (food)
-                Score++;
-
-            else
+            if (other.gameObject.GetComponent<Consume>())
             {
+                //TODO: Update this component
                 var enemyScore = other.gameObject.GetComponent<Consume>().Score;
                 Score = +enemyScore;
             }
+            else
+                Score++;
 
             ScoreUI.text = "Score: " + Score;
         }
