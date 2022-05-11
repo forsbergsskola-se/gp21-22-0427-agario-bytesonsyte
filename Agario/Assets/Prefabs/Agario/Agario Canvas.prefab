@@ -441,8 +441,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1303643857659142697, guid: 7379385da5741004a8f05c5f5c569765, type: 3}
+      propertyPath: m_text
+      value: 'Score: 1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303643857659142697, guid: 7379385da5741004a8f05c5f5c569765, type: 3}
       propertyPath: m_fontSize
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303643857659142697, guid: 7379385da5741004a8f05c5f5c569765, type: 3}
+      propertyPath: m_wordSpacing
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1303643857659142697, guid: 7379385da5741004a8f05c5f5c569765, type: 3}
       propertyPath: m_fontSizeBase
