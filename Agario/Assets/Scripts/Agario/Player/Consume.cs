@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using TMPro;
 using UnityEngine;
 
@@ -17,16 +18,17 @@ namespace Agario.Player
         {
             var food = other.gameObject.CompareTag("Food");
             var enemy = other.gameObject.CompareTag("Player");
+            var playerScale = gameObject.transform.localScale.x;
 
             if (food)
             {
-                IncreasePlayerScale(other);
+                var foodSize = other.gameObject.transform.localScale.x;
+                IncreasePlayerScale(other, playerScale, foodSize);
                 ConsumeFood(other);
                 return;
             }
-            
-            if (!enemy) return;
-            CalculateEnemyOutcome(other);
+            if (enemy)
+                CalculateEnemyOutcome(other, playerScale);
         }
 
         
@@ -38,8 +40,12 @@ namespace Agario.Player
         }
 
 
-        private static void IncreasePlayerScale(Collision2D other)
+        private void IncreasePlayerScale(Collision2D other, float playerScale, float enemyScale)
         {
+            var newScale = gameObject.transform.localScale;
+            newScale += new Vector3(enemyScale, enemyScale, 0);
+
+            Debug.Log($"Player scale increased by {newScale.x - playerScale}");
             IncreasePlayerScore(other);
         }
 
@@ -52,9 +58,8 @@ namespace Agario.Player
 
 
 
-        private void CalculateEnemyOutcome(Collision2D other)
+        private void CalculateEnemyOutcome(Collision2D other, float playerScale)
         {
-            var playerScale = transform.localScale.x;
             var enemyScale = other.gameObject.transform.localScale.x;
             var enemyName = other.gameObject.GetComponentInChildren<TMP_Text>().text;
 
@@ -63,7 +68,7 @@ namespace Agario.Player
             {
                 Debug.Log($"{gameObject.name} ate {enemyName}");
                 
-                IncreasePlayerScale(other);
+                IncreasePlayerScale(other, playerScale, enemyScale);
                 Destroy(other.gameObject);
             }
             
