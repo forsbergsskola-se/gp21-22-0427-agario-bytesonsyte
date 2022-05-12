@@ -14,19 +14,17 @@ namespace Agario.Player
             mainCam = Camera.main;
         }
 
-        public void FixedUpdate()
+
+        private void Update()
         {
             CurrentPos = transform.position;
             TargetPos = mainCam!.ScreenToWorldPoint(Input
                 .mousePosition); // gets targetPos from mouse location (with a null check)
-        }
-
-        private void Update()
-        {
+        
             TargetPos.z = CurrentPos.z;
             transform.position = Vector3.MoveTowards(CurrentPos, TargetPos, // constantly move towards mouse (TargetPos)
-                (float)Speed * Time.deltaTime // use deltaTime to negate computer performance effecting PlayerSpeed
-                / transform.localScale.x);  // the higher the player's scale, the lower their speed
+                (float) Speed * Time.deltaTime); // use deltaTime to negate computer performance effecting PlayerSpeed
+            // transform.localScale.x);  // the higher the player's scale, the lower their speed
         }
     }
 }
