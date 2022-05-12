@@ -25,7 +25,7 @@ namespace Agario.Player
         {
             TargetPos.z = CurrentPos.z;
             transform.position = Vector3.MoveTowards(CurrentPos, TargetPos, // constantly move towards mouse (TargetPos)
-                Speed * Time.deltaTime // use deltaTime to negate computer performance effecting PlayerSpeed
+                (float)Speed * Time.deltaTime // use deltaTime to negate computer performance effecting PlayerSpeed
                 / transform.localScale.x);  // the higher the player's scale, the lower their speed
         }
     }
