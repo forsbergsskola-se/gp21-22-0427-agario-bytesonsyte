@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -27,16 +28,25 @@ namespace Agario.Player
             if (Score > HighScore)
             {
                 HighScore = Score;
-                HighScoreUI.text = $"{HighScore}";
+                var reversed = ReverseIntToString(HighScore);
+                HighScoreUI.text = reversed;
             }
         }
-
+        
         
         
         public void IncreaseScore(int enemyScore)
         {
             Score += enemyScore;
             ScoreUI.text = "Score: " + Score;
+        }
+
+        
+        
+        private static string ReverseIntToString(int score)
+        {
+            var text = new string(score.ToString().Reverse().ToArray());
+            return text;
         }
     }
 }
