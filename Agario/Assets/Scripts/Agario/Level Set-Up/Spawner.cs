@@ -1,5 +1,6 @@
 using System.Collections;
 using Agario.Player;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,6 +19,7 @@ namespace Agario.Level_Set_Up
         private GameObject FoodHolder;
         public int foodCount;
         public GameObject Player;
+        private string playerName;
         public float RespawnTime;
         private bool onlyOnce = true;
 
@@ -31,6 +33,7 @@ namespace Agario.Level_Set_Up
             Cam = Camera.main;
             SpawnLevel();
             CalculateSpawnRange();
+            playerName = PlayerPrefs.GetString("Player Name");
             SpawnPlayer();
             FoodHolder = new GameObject("Food Holder");
             for (int i = 0; i < MaxFoodCount; i++)
@@ -71,6 +74,10 @@ namespace Agario.Level_Set_Up
             var spawnPoint = RandomPos();
             Instantiate(playerPrefab, spawnPoint, quaternion.identity);
             Player = GameObject.FindWithTag("Player");
+
+            var nameTag = Player.GetComponentInChildren<TMP_Text>();
+            nameTag.text = $"{playerName}";
+            
             Debug.Log($"{Player.gameObject.name} spawned at: {spawnPoint}");
             Cam.transform.position = Player.transform.position;
         }

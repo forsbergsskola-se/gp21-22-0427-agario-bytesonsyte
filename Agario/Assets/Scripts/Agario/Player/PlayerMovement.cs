@@ -1,4 +1,3 @@
-using Agario.Level_Set_Up;
 using UnityEngine;
 
 namespace Agario.Player
