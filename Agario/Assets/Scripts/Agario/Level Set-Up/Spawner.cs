@@ -1,4 +1,5 @@
-using System;
+using System.Collections;
+using Agario.Player;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,6 +17,10 @@ namespace Agario.Level_Set_Up
         public int MaxFoodCount;
         private GameObject FoodHolder;
         public int foodCount;
+        public GameObject Player;
+        public float RespawnTime;
+        private bool onlyOnce = true;
+
 
 
         Vector2 cubeSize;
@@ -33,8 +38,27 @@ namespace Agario.Level_Set_Up
                 SpawnFood();
         }
 
+        private void Start()
+        {
+            Player = GameObject.FindWithTag("Player");
+        }
+
         private void Update()
         {
+            if (Input.GetButtonDown("Jump"))
+            {
+                var playerScore = FindObjectOfType<PlayerScore>();
+                playerScore.Score = 0;
+                playerScore.ScoreUI.text = "Score: 0 ";
+                Destroy(Player);
+            }
+            
+            if (Player == null && onlyOnce)
+            {
+                Debug.Log("Respawning...");
+                StartCoroutine(RespawnUponDeath());
+            }
+            
             foodCount = FoodHolder.transform.childCount;
             if (foodCount >= MaxFoodCount) return;
             if (foodCount <= MaxFoodCount)
@@ -72,6 +96,17 @@ namespace Agario.Level_Set_Up
             Vector2 randomSpawn = new Vector3(Random.Range(-cubeSize.x / 2, cubeSize.x / 2),
                 Random.Range(-cubeSize.y / 2, cubeSize.y / 2), 0);
             return randomSpawn + cubeCenter;
+        }
+        
+        private IEnumerator RespawnUponDeath()
+        {
+            onlyOnce = false;
+            yield return new WaitForSeconds(RespawnTime);
+            Debug.Log("Spawning Player");
+            SpawnPlayer();
+            Player = GameObject.FindWithTag("Player");
+            Cam.GetComponent<CameraFollow>().UpdatePlayerComponents();
+            onlyOnce = true;
         }
     }
 }
