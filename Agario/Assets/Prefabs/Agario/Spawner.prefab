@@ -47,3 +47,7 @@ MonoBehaviour:
   ScalingMultiplier: 1.5
   backgroundPrefab: {fileID: 1814241287234306801, guid: effd46b76d17e8c43baac6accbaca366, type: 3}
   playerPrefab: {fileID: 7741781493456200064, guid: 0137a66c6b6fa1346b8cd6b8389708ba, type: 3}
+  foodPrefab: {fileID: 803349660217478806, guid: b1d475fcedb821f4c945573078267e51, type: 3}
+  spawnZone: {fileID: 9064620269951687895, guid: effd46b76d17e8c43baac6accbaca366, type: 3}
+  MaxFoodCount: 2000
+  foodCount: 0
