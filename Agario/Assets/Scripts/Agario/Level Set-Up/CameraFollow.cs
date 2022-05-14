@@ -10,8 +10,14 @@ namespace Agario.Level_Set_Up
         private Rigidbody2D playerRb;
         private Vector3 playerVelocity;
         private float playerSpeed;
+        private Vector3 playerPos;
 
         private void Start()
+        {
+            UpdatePlayerComponents();
+        }
+
+        public void UpdatePlayerComponents()
         {
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
             playerRb = player.GetComponent<Rigidbody2D>();
@@ -21,10 +27,20 @@ namespace Agario.Level_Set_Up
         // Update is called once per frame
         private void FixedUpdate()
         {
-            followTransform = player.transform.position;
-            playerVelocity = playerRb.velocity;
-            var smoothedPos = Vector3.SmoothDamp(gameObject.transform.position, followTransform, ref playerVelocity, (float) playerSpeed* Time.smoothDeltaTime);
-            gameObject.transform.position = new Vector3(smoothedPos.x, smoothedPos.y, -1);
+            if (player.gameObject != null)
+            {
+                playerPos = player.transform.position;
+                followTransform = playerPos;
+                playerVelocity = playerRb.velocity;
+                var smoothedPos = Vector3.SmoothDamp(gameObject.transform.position, followTransform, ref playerVelocity,
+                    (float) playerSpeed * Time.smoothDeltaTime);
+                gameObject.transform.position = new Vector3(smoothedPos.x, smoothedPos.y, -1);
+            }
+
+            else
+            {
+                gameObject.transform.position = transform.position;
+            }
         }
     }
 }
