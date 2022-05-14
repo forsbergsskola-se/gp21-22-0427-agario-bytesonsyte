@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 1972033370526588262, guid: ebd0af2d6727a62429b15905f9b45706, type: 3}
+      propertyPath: RespawnTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1972033370526588263, guid: ebd0af2d6727a62429b15905f9b45706, type: 3}
       propertyPath: m_RootOrder
       value: 2
