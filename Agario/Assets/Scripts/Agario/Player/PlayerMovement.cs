@@ -1,6 +1,4 @@
-using System.Collections;
 using Agario.Level_Set_Up;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Agario.Player
@@ -18,9 +16,11 @@ namespace Agario.Player
         private Vector3 CurrentPos;
         private Camera mainCam;
         private Spawner spawner;
+        private PlayerScore playerScore;
 
         private void Start()
         {
+            playerScore = GetComponent<PlayerScore>();
             spawner = FindObjectOfType<Spawner>();
             mainCam = Camera.main;
             currentSpeed = maxSpeed;
@@ -36,12 +36,6 @@ namespace Agario.Player
 
         private void Update()
         {
-            if (gameObject.IsDestroyed())
-            {
-                StartCoroutine(RespawnUponDeath());
-                spawner.SpawnPlayer();
-            }
-
             if (currentSpeed == minSpeed)
                 CalculateSpeed();
             
@@ -67,11 +61,6 @@ namespace Agario.Player
                 currentSpeed = maxSpeed - (scaleAmount / speedMultiplier);
             else
                 currentSpeed = minSpeed;
-        }
-
-        private IEnumerator RespawnUponDeath()
-        {
-            yield return new WaitForSeconds(5);
         }
     }
 }
