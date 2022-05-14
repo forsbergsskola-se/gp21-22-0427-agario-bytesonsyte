@@ -13,6 +13,7 @@ namespace Agario.Level_Set_Up
         public BoxCollider2D spawnZone;
         private Camera Cam;
         public int MaxFoodCount;
+        private GameObject FoodHolder;
 
 
         Vector2 cubeSize;
@@ -25,6 +26,7 @@ namespace Agario.Level_Set_Up
             SpawnPlayer();
             CalculateSpawnRange();
 
+            FoodHolder = new GameObject("Food Holder");
             for (int i = 0; i <= MaxFoodCount; i++)
                 SpawnFood();
         }
@@ -52,7 +54,7 @@ namespace Agario.Level_Set_Up
 
         private void SpawnFood()
         {
-            Instantiate(foodPrefab, RandomPos(), Quaternion.identity);
+            Instantiate(foodPrefab, RandomPos(), Quaternion.identity, FoodHolder.transform);
         }
 
         private Vector3 RandomPos()
