@@ -51,3 +51,5 @@ MonoBehaviour:
   spawnZone: {fileID: 9064620269951687895, guid: effd46b76d17e8c43baac6accbaca366, type: 3}
   MaxFoodCount: 2000
   foodCount: 0
+  Player: {fileID: 0}
+  RespawnTime: 5
