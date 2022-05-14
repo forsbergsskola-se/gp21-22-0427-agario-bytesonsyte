@@ -15,22 +15,23 @@ namespace Agario.Player
         private Vector3 TargetPos;
         private Vector3 CurrentPos;
         private Camera mainCam;
-        private Spawner spawner;
-        private PlayerScore playerScore;
+
+        public GameObject field;
+        private float xMin, xMax, yMin, yMax;
 
         private void Start()
         {
-            playerScore = GetComponent<PlayerScore>();
-            spawner = FindObjectOfType<Spawner>();
             mainCam = Camera.main;
             currentSpeed = maxSpeed;
             startScale = transform.localScale.x;
+            CalculateMapBounds();
         }
 
         private void FixedUpdate()
         {
-            TargetPos = mainCam!.ScreenToWorldPoint(Input
-                .mousePosition); // gets targetPos from mouse location (with a null check)
+            var mouseLocation = mainCam!.ScreenToWorldPoint(Input.mousePosition);
+            TargetPos = new Vector3(Mathf.Clamp(mouseLocation.x, xMin, xMax),
+                Mathf.Clamp(mouseLocation.y, yMin, yMax), 0); // clamps targetPos so cannot go outside map bounds
         }
 
 
@@ -47,7 +48,8 @@ namespace Agario.Player
                 (float) currentSpeed * scale); // use deltaTime to negate computer performance effecting PlayerSpeed
             // transform.localScale.x);  // the higher the player's scale, the lower their speed
         }
-        
+
+
         private void CalculateSpeed()
         {
             var currentScale = transform.localScale.x;
@@ -61,6 +63,19 @@ namespace Agario.Player
                 currentSpeed = maxSpeed - (scaleAmount / speedMultiplier);
             else
                 currentSpeed = minSpeed;
+        }
+        
+        
+        private void CalculateMapBounds()
+        {
+            var fieldTransform = field.transform.position;
+            var fieldScale = field.transform.localScale;
+            xMin = fieldTransform.x - (fieldScale.x / 2);
+            xMax = fieldTransform.x + (fieldScale.x / 2);
+            
+            yMin = fieldTransform.y - (fieldScale.y / 2);
+            yMax = fieldTransform.y + (fieldScale.y / 2);
+            //Debug.Log($"MinX = {xMin}, MaxX = {xMax}, MinY = {yMin}, MaxY = {yMax}");
         }
     }
 }
