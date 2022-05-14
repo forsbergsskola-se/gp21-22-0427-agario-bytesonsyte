@@ -30,17 +30,11 @@ namespace Agario.Level_Set_Up
         {
             Cam = Camera.main;
             SpawnLevel();
-            SpawnPlayer();
             CalculateSpawnRange();
-
+            SpawnPlayer();
             FoodHolder = new GameObject("Food Holder");
             for (int i = 0; i < MaxFoodCount; i++)
                 SpawnFood();
-        }
-
-        private void Start()
-        {
-            Player = GameObject.FindWithTag("Player");
         }
 
         private void Update()
@@ -74,7 +68,10 @@ namespace Agario.Level_Set_Up
 
         public void SpawnPlayer()
         {
-            Instantiate(playerPrefab, RandomPos(), quaternion.identity);
+            var spawnPoint = RandomPos();
+            Instantiate(playerPrefab, spawnPoint, quaternion.identity);
+            Player = GameObject.FindWithTag("Player");
+            Debug.Log($"{Player.gameObject.name} spawned at: {spawnPoint}");
         }
 
         private void CalculateSpawnRange()
