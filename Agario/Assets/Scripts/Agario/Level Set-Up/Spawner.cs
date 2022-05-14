@@ -13,8 +13,8 @@ namespace Agario.Level_Set_Up
         public BoxCollider2D spawnZone;
         private Camera Cam;
         public int MaxFoodCount;
-        
-        
+
+
         Vector2 cubeSize;
         Vector2 cubeCenter;
 
@@ -24,7 +24,7 @@ namespace Agario.Level_Set_Up
             SpawnLevel();
             SpawnPlayer();
             CalculateSpawnRange();
-            
+
             for (int i = 0; i <= MaxFoodCount; i++)
                 SpawnFood();
         }
@@ -45,15 +45,21 @@ namespace Agario.Level_Set_Up
         {
             Transform cubeTrans = spawnZone.GetComponent<Transform>();
             cubeCenter = spawnZone.GetComponent<Transform>().position;
-            
+
             cubeSize.x = cubeTrans.localScale.x * spawnZone.size.x;
             cubeSize.y = cubeTrans.localScale.y * spawnZone.size.y;
         }
 
         private void SpawnFood()
         {
-            Vector2 randomPosition = new Vector3(Random.Range(-cubeSize.x/ 2, cubeSize.x/ 2), Random.Range(-cubeSize.y/ 2, cubeSize.y/ 2), 0);
-            Instantiate(foodPrefab, randomPosition + cubeCenter, Quaternion.identity);
+            Instantiate(foodPrefab, RandomPos(), Quaternion.identity);
+        }
+
+        private Vector3 RandomPos()
+        {
+            Vector2 randomSpawn = new Vector3(Random.Range(-cubeSize.x / 2, cubeSize.x / 2),
+                Random.Range(-cubeSize.y / 2, cubeSize.y / 2), 0);
+            return randomSpawn + cubeCenter;
         }
     }
 }
