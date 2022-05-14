@@ -15,7 +15,7 @@ namespace Agario.Level_Set_Up
         {
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
             playerRb = player.GetComponent<Rigidbody2D>();
-            playerSpeed = player.GetComponent<PlayerMovement>().Speed;
+            playerSpeed = player.GetComponent<PlayerMovement>().currentSpeed;
         }
         
         // Update is called once per frame
