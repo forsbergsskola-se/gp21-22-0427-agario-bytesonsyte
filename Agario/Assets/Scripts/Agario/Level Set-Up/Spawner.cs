@@ -48,7 +48,7 @@ namespace Agario.Level_Set_Up
             backgroundPrefab.transform.localScale = camScale * ScalingMultiplier;
         }
 
-        private void SpawnPlayer()
+        public void SpawnPlayer()
         {
             Instantiate(playerPrefab, RandomPos(), quaternion.identity);
         }
