@@ -72,6 +72,7 @@ namespace Agario.Level_Set_Up
             Instantiate(playerPrefab, spawnPoint, quaternion.identity);
             Player = GameObject.FindWithTag("Player");
             Debug.Log($"{Player.gameObject.name} spawned at: {spawnPoint}");
+            Cam.transform.position = Player.transform.position;
         }
 
         private void CalculateSpawnRange()
