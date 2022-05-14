@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,7 @@ namespace Agario.Level_Set_Up
         private Camera Cam;
         public int MaxFoodCount;
         private GameObject FoodHolder;
+        public int foodCount;
 
 
         Vector2 cubeSize;
@@ -27,7 +29,15 @@ namespace Agario.Level_Set_Up
             CalculateSpawnRange();
 
             FoodHolder = new GameObject("Food Holder");
-            for (int i = 0; i <= MaxFoodCount; i++)
+            for (int i = 0; i < MaxFoodCount; i++)
+                SpawnFood();
+        }
+
+        private void Update()
+        {
+            foodCount = FoodHolder.transform.childCount;
+            if (foodCount >= MaxFoodCount) return;
+            if (foodCount <= MaxFoodCount)
                 SpawnFood();
         }
 
