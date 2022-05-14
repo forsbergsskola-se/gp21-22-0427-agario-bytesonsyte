@@ -38,7 +38,7 @@ namespace Agario.Level_Set_Up
 
         private void SpawnPlayer()
         {
-            Instantiate(playerPrefab, Vector3.zero, quaternion.identity);
+            Instantiate(playerPrefab, RandomPos(), quaternion.identity);
         }
 
         private void CalculateSpawnRange()
