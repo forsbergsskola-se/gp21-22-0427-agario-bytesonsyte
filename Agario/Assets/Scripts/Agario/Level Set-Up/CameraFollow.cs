@@ -6,34 +6,25 @@ namespace Agario.Level_Set_Up
     public class CameraFollow : MonoBehaviour
     {
         private Vector3 followTransform;
-        public BoxCollider2D mapBounds;
-
-        private float xMin, xMax, yMin, yMax;
-        private float camY,camX;
-        private float camOrthSize;
-        private float cameraRatio;
-        private Camera mainCam;
-        public PlayerMovement Player;
+        private GameObject player;
+        private Rigidbody2D playerRb;
+        private Vector3 playerVelocity;
+        private float playerSpeed;
 
         private void Start()
         {
-            Player = FindObjectOfType<PlayerMovement>();
-            var bounds = mapBounds.bounds;
-            xMin = bounds.min.x;
-            xMax = bounds.max.x;
-            yMin = bounds.min.y;
-            yMax = bounds.max.y;
-
-            camOrthSize = GetComponent<Camera>().orthographicSize;
-            cameraRatio = (xMax + camOrthSize) / 2.0f;
+            player = GameObject.FindGameObjectWithTag("Player").gameObject;
+            playerRb = player.GetComponent<Rigidbody2D>();
+            playerSpeed = player.GetComponent<PlayerMovement>().Speed;
         }
+        
         // Update is called once per frame
         private void FixedUpdate()
         {
-            followTransform = Player.gameObject.transform.position;
-            camY = Mathf.Clamp(followTransform.y, yMin + camOrthSize, yMax - camOrthSize);
-            camX = Mathf.Clamp(followTransform.x, xMin + cameraRatio, xMax - cameraRatio);
-            //transform.position = new Vector3(followTransform.x, followTransform.y, -1);
+            followTransform = player.transform.position;
+            playerVelocity = playerRb.velocity;
+            var smoothedPos = Vector3.SmoothDamp(gameObject.transform.position, followTransform, ref playerVelocity, (float) playerSpeed* Time.smoothDeltaTime);
+            gameObject.transform.position = new Vector3(smoothedPos.x, smoothedPos.y, -1);
         }
     }
 }
