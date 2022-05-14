@@ -315,7 +315,7 @@ MonoBehaviour:
   minSpeed: 2
   currentSpeed: 0
   speedMultiplier: 10
-  RespawnTime: 5
+  field: {fileID: 1814241287234306801, guid: effd46b76d17e8c43baac6accbaca366, type: 3}
 --- !u!114 &9020242224663471660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,5 +344,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   ScoreUI: {fileID: 0}
-  HighScoreUI: {fileID: 0}
   HighScore: 0
