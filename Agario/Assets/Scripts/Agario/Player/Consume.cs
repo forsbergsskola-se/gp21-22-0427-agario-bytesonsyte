@@ -71,6 +71,7 @@ namespace Agario.Player
                 
                 IncreasePlayerScale(playerScale, enemyScale);
                 IncreasePlayerScore(other, false);
+                other.gameObject.GetComponent<PlayerScore>().Score = 0;
                 Destroy(other.gameObject);
             }
             
