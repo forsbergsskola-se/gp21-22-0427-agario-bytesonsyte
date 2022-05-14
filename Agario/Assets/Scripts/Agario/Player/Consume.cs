@@ -8,6 +8,7 @@ namespace Agario.Player
     {
         public float ScaleTolerance = 0.01f;
         private string PlayerName;
+        public float foodSize;
         private void Start()
         {
             PlayerName = GetComponentInChildren<TMP_Text>().text;
@@ -21,7 +22,6 @@ namespace Agario.Player
 
             if (food)
             {
-                var foodSize = other.gameObject.transform.localScale.x;
                 IncreasePlayerScale(playerScale, foodSize);
                 IncreasePlayerScore(other, true);
                 ConsumeFood(other);
