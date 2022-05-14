@@ -274,7 +274,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.0001
+  m_Mass: 7.0685835
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -315,6 +315,7 @@ MonoBehaviour:
   minSpeed: 2
   currentSpeed: 0
   speedMultiplier: 10
+  RespawnTime: 5
 --- !u!114 &9020242224663471660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,3 +343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 0
+  ScoreUI: {fileID: 0}
+  HighScoreUI: {fileID: 0}
+  HighScore: 0
