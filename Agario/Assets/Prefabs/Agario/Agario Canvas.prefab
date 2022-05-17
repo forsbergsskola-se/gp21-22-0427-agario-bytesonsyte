@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1303643857659142697, guid: 7379385da5741004a8f05c5f5c569765, type: 3}
       propertyPath: m_isRightToLeft
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1303643857659142697, guid: 7379385da5741004a8f05c5f5c569765, type: 3}
       propertyPath: m_VerticalAlignment
