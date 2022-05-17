@@ -7,7 +7,9 @@
 - [x] Open Word Server implemented
 - [x] Open word Client implemented
 
-*comments:*
+*comments: scenes and scripts for these are found within Agario project:* 
+>*Scenes -> Assignments*  
+>*Scripts -> Assignments*
 
 #
 
@@ -19,7 +21,7 @@
 - [x] `PLAYER_SPAWN` instantiates player 
   - [x] to a `RANDOM_POSITION` 
 
-*comments:*
+*comments: see Spawner.cs for spawning logic and PlayerMovement.cs for active player clamping logic*
 
 #
 
@@ -31,7 +33,7 @@
 - [x] `MOUSE_POSITION` player moves towards mouse's `VECTOR_DIRECTION`
   - [ ] \(Optional) or `WASD_INPUT` used instead
 
-*comments:*
+*comments: see CameraFollow.cs and PlayerMovement.cs. Spawner.cs uses prefabs for visuals *
 
 #
 
@@ -44,7 +46,8 @@
   - [x] to `UPDATE_VISUALS` & grow in size
   - [x] and `INCREASE_SCORE` by one
 
-*comments:*
+*comments: see Spawner.cs for SpawnFood() logic, which spawns a set amount within the playuing field & then more in an update if the orb/ food count falls below this inital set amount*  
+*Consume.cs handles orb/ food collection and updates the IncreaseScore function in PlayerScore.cs*
 
 #
 
@@ -57,7 +60,9 @@
 - [x] `PLAYER_NAMES` shows the names of each player on their circles 
   - [ ] + leaderboard entry 
 
-*comments:*
+*comments: Consume.cs uses collision to then compare player scales, then destroy rival if bigger than them and update Score.cs accordingly*  
+*Spawner.cs detects if players are destroyed and respawns accordingly*
+*Score.cs starts with score at 0 & keeps track of highscore for the leaderboard*
 
 #
 
