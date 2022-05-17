@@ -344,4 +344,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   ScoreUI: {fileID: 0}
-  HighScore: 0
+  StoredHighScore: 0
+  ResetHighScorePlayerPrefs: 0
