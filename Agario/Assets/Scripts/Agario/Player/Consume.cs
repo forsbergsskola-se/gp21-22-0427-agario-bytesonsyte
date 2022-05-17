@@ -31,8 +31,8 @@ namespace Agario.Player
                 CalculateEnemyOutcome(other, playerScale);
         }
 
-        
-        
+
+
         private void ConsumeFood(Collision2D other)
         {
             Debug.Log($"{PlayerName} ate {other.gameObject.name}");
@@ -40,7 +40,8 @@ namespace Agario.Player
         }
 
 
-        private void IncreasePlayerScale(float playerScale, float enemyScale)
+        
+        private void IncreasePlayerScale(float playerScale, float enemyScale) //Update Visuals
         {
             gameObject.transform.localScale += new Vector3(enemyScale, enemyScale, 0);
             var newScale = transform.localScale.x;
@@ -53,7 +54,11 @@ namespace Agario.Player
 
         private void IncreasePlayerScore(Collision2D other)
         {
-            var enemyScore = other.gameObject.GetComponent<Consume>() ? other.gameObject.GetComponent<PlayerScore>().Score : 1;
+            var enemyScore = other.gameObject.GetComponent<Consume>() ? // null check to see if enemy via getting consume component
+                other.gameObject.GetComponent<PlayerScore>().Score // increases score using rival's score value if they have PlayerScore component
+                : 1; // otherwise increases score by 1 by default if not an enemy i.e. a food orb
+            
+            
             GetComponent<PlayerScore>().IncreaseScore(enemyScore);
         }
 
