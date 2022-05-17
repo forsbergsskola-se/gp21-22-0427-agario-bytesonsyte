@@ -2,10 +2,10 @@
 
 ### TCP & UDP Assignments:
 
-- [ ] Time Server implemented
-- [ ] Time Client implemented
-- [ ] Open Word Server implemented
-- [ ] Open word Client implemented
+- [x] Time Server implemented
+- [x] Time Client implemented
+- [x] Open Word Server implemented
+- [x] Open word Client implemented
 
 *comments:*
 
@@ -13,11 +13,11 @@
 
 ### Agar.io Player Spawning:
 
-- [ ] `Agario` scene added to project
-- [ ] `FIELD_SIZE` sets the play area 
-- [ ] `CLAMP_POSITION` of Player to within this Field
-- [ ] `PLAYER_SPAWN` instantiates player 
-  - [ ] to a `RANDOM_POSITION` 
+- [x] `Agario` scene added to project
+- [x] `FIELD_SIZE` sets the play area 
+- [x] `CLAMP_POSITION` of Player to within this Field
+- [x] `PLAYER_SPAWN` instantiates player 
+  - [x] to a `RANDOM_POSITION` 
 
 *comments:*
 
@@ -25,11 +25,11 @@
 
 ### Agar.io Player Tracking:
 
-- [ ] `FOLLOW_CAMERA` tracks player
-- [ ] `PLAYER_VISUAL` shows player in-game as a circle
-- [ ] `PLAYER_INPUT` tracks where player wants to move to
-- [ ] `MOUSE_POSITION` player moves towards mouse's `VECTOR_DIRECTION`
-  - [ ] or `WASD_INPUT` used instead
+- [x] `FOLLOW_CAMERA` tracks player
+- [x] `PLAYER_VISUAL` shows player in-game as a circle
+- [x] `PLAYER_INPUT` tracks where player wants to move to
+- [x] `MOUSE_POSITION` player moves towards mouse's `VECTOR_DIRECTION`
+  - [ ] \(Optional) or `WASD_INPUT` used instead
 
 *comments:*
 
@@ -37,12 +37,12 @@
 
 ### Agar.io Orb Collection:
 
-- [ ] `SPAWN_ORBS` instantiates orbs within map's bounds
-  - [ ] to a `RANDOM_POSITION`
-  - [ ] within an `UPDATE_LOOP`
-- [ ] COLLECT_ORB player can eat these orbs
-  - [ ] to `UPDATE_VISUALS` & grow in size
-  - [ ] and `INCREASE_SCORE` by one
+- [x] `SPAWN_ORBS` instantiates orbs within map's bounds
+  - [x] to a `RANDOM_POSITION`
+  - [x] within an `UPDATE_LOOP`
+- [x] COLLECT_ORB player can eat these orbs
+  - [x] to `UPDATE_VISUALS` & grow in size
+  - [x] and `INCREASE_SCORE` by one
 
 *comments:*
 
@@ -50,9 +50,9 @@
 
 ### Agar.io Enemy/Player Collision:
 
-- [ ] `DISTANCE_CHECK` sees if players are overlapping & can be eaten
-- [ ] `PLAYER_RESPAWN` instantiates smaller player at random pos with 0 score
-- [ ] `INCREASE_SCORE` of the bigger player with the smaller one's total score
+- [x] `DISTANCE_CHECK` sees if players are overlapping & can be eaten
+- [x] `PLAYER_RESPAWN` instantiates smaller player at random pos with 0 score
+- [x] `INCREASE_SCORE` of the bigger player with the smaller one's total score
 - [ ] `PLAYER_LEADERBOARD` tracks & ranks high scores of players
 - [ ] `PLAYER_NAMES` shows the names of each player on their circles + leaderboard entry 
 
