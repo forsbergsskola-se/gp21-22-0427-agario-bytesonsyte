@@ -11,34 +11,38 @@ namespace Agario.Player
         [HideInInspector] public TextMeshProUGUI ScoreUI;
         private  TextMeshProUGUI HighScoreUI;
         public int HighScore;
+        public int StoredHighScore;
+        
         
         private void Start()
         {
             Score = 0;
             ScoreUI = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
             HighScoreUI = GameObject.Find("High Score No").GetComponent<TextMeshProUGUI>();
-            Debug.Log($"Converted highscore: "+ Convert.ToInt32(HighScoreUI.text));
-            HighScore = Convert.ToInt32(HighScoreUI.text); // 0 at launch, but updated otherwise
+            Debug.Log($"Converted high score: "+ Convert.ToInt32(HighScoreUI.text));
+
+            StoredHighScore = PlayerPrefs.GetInt("High Score");
+            Debug.Log("Player Prefs High Score = " + StoredHighScore);
+            HighScoreUI.text = StoredHighScore.ToString();
+            HighScore = Convert.ToInt32(HighScoreUI.text); // if no player prefs int exists, convert & use UI string data which is 0 at launch, but updated otherwise
+            Debug.Log("High Score = " + HighScore);
         }
 
-        
-        
-        private void Update()
-        {
-            if (Score > HighScore)
-            {
-                HighScore = Score;
-                var reversed = ReverseIntToString(HighScore);
-                HighScoreUI.text = reversed;
-            }
-        }
-        
         
         
         public void IncreaseScore(int enemyScore)
         {
             Score += enemyScore;
             ScoreUI.text = "Score: " + Score;
+            
+            if (Score > HighScore)
+            {
+                HighScore = Score;
+                HighScoreUI.text = HighScore.ToString();
+                
+                if (HighScore > StoredHighScore)
+                    PlayerPrefs.SetInt("High Score", HighScore);
+            }
         }
 
         
