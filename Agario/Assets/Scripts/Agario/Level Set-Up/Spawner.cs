@@ -9,7 +9,7 @@ namespace Agario.Level_Set_Up
 {
     public class Spawner : MonoBehaviour
     {
-        public float ScalingMultiplier;
+        public float FieldSizeMultiplier;
         public GameObject backgroundPrefab;
         public GameObject playerPrefab;
         public GameObject foodPrefab;
@@ -66,10 +66,10 @@ namespace Agario.Level_Set_Up
         {
             var camScale = new Vector3(Cam!.pixelWidth, Cam!.pixelHeight, 0);
             Instantiate(backgroundPrefab, Vector3.zero, quaternion.identity);
-            backgroundPrefab.transform.localScale = camScale * ScalingMultiplier;
+            backgroundPrefab.transform.localScale = camScale * FieldSizeMultiplier;
         }
 
-        public void SpawnPlayer()
+        private void SpawnPlayer()
         {
             var spawnPoint = RandomPos();
             Instantiate(playerPrefab, spawnPoint, quaternion.identity);

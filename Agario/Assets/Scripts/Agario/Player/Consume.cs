@@ -23,7 +23,7 @@ namespace Agario.Player
             if (food)
             {
                 IncreasePlayerScale(playerScale, foodSize);
-                IncreasePlayerScore(other, true);
+                IncreasePlayerScore(other);
                 ConsumeFood(other);
                 return;
             }
@@ -51,7 +51,7 @@ namespace Agario.Player
 
 
 
-        private void IncreasePlayerScore(Collision2D other, bool food)
+        private void IncreasePlayerScore(Collision2D other)
         {
             var enemyScore = other.gameObject.GetComponent<Consume>() ? other.gameObject.GetComponent<PlayerScore>().Score : 1;
             GetComponent<PlayerScore>().IncreaseScore(enemyScore);
@@ -70,9 +70,7 @@ namespace Agario.Player
                 Debug.Log($"{gameObject.name} ate {enemyName}");
                 
                 IncreasePlayerScale(playerScale, enemyScale);
-                IncreasePlayerScore(other, false);
-                other.gameObject.GetComponent<PlayerScore>().Score = 0;
-                Destroy(other.gameObject);
+                IncreasePlayerScore(other);Destroy(other.gameObject);
             }
             
             // It's a draw, both go free
