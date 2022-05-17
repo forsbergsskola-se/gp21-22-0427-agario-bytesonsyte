@@ -14,7 +14,7 @@ namespace Agario.Player
         private Vector3 TargetPos;
         private Vector3 CurrentPos;
         private Camera mainCam;
-
+        
         public GameObject field;
         private float xMin, xMax, yMin, yMax;
 
@@ -28,15 +28,14 @@ namespace Agario.Player
 
         private void FixedUpdate()
         {
-            var mouseLocation = mainCam!.ScreenToWorldPoint(Input.mousePosition);
-            TargetPos = new Vector3(Mathf.Clamp(mouseLocation.x, xMin, xMax),
-                Mathf.Clamp(mouseLocation.y, yMin, yMax), 0); // clamps targetPos so cannot go outside map bounds
+            ClampPosition();
+
         }
 
 
         private void Update()
         {
-            if (currentSpeed == minSpeed)
+            if (currentSpeed != minSpeed)
                 CalculateSpeed();
             
             CurrentPos = transform.position;
@@ -46,6 +45,14 @@ namespace Agario.Player
             gameObject.transform.position = Vector3.MoveTowards(CurrentPos, TargetPos, // constantly move towards mouse (TargetPos)
                 (float) currentSpeed * scale); // use deltaTime to negate computer performance effecting PlayerSpeed
             // transform.localScale.x);  // the higher the player's scale, the lower their speed
+        }
+
+
+        private void ClampPosition()
+        {
+            var MousePosition = mainCam!.ScreenToWorldPoint(Input.mousePosition); // player input
+            TargetPos = new Vector3(Mathf.Clamp(MousePosition.x, xMin, xMax),
+                Mathf.Clamp(MousePosition.y, yMin, yMax), 0); // clamps targetPos so cannot go outside map bounds
         }
 
 
