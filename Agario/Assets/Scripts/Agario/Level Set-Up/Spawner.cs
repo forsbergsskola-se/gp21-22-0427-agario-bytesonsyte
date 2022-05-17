@@ -23,11 +23,10 @@ namespace Agario.Level_Set_Up
         public float RespawnTime;
         private bool onlyOnce = true;
 
+        private Vector2 fieldSize;
+        private Vector2 fieldCenter;
 
-
-        Vector2 cubeSize;
-        Vector2 cubeCenter;
-
+        
         private void Awake()
         {
             Cam = Camera.main;
@@ -36,9 +35,12 @@ namespace Agario.Level_Set_Up
             playerName = PlayerPrefs.GetString("Player Name");
             SpawnPlayer();
             FoodHolder = new GameObject("Food Holder");
-            for (int i = 0; i < MaxFoodCount; i++)
-                SpawnFood();
+            
+            for (var i = 0; i < MaxFoodCount; i++)
+                SpawnOrbsFood();
         }
+
+
 
         private void Update()
         {
@@ -59,9 +61,11 @@ namespace Agario.Level_Set_Up
             foodCount = FoodHolder.transform.childCount;
             if (foodCount >= MaxFoodCount) return;
             if (foodCount <= MaxFoodCount)
-                SpawnFood();
+                SpawnOrbsFood();
         }
 
+        
+        
         private void SpawnLevel()
         {
             var camScale = new Vector3(Cam!.pixelWidth, Cam!.pixelHeight, 0);
@@ -69,9 +73,12 @@ namespace Agario.Level_Set_Up
             backgroundPrefab.transform.localScale = camScale * FieldSizeMultiplier;
         }
 
+        
+        
         private void SpawnPlayer()
         {
-            var spawnPoint = RandomPos();
+            var randomPosition = RandomPosition();
+            var spawnPoint = randomPosition;
             Instantiate(playerPrefab, spawnPoint, quaternion.identity);
             Player = GameObject.FindWithTag("Player");
 
@@ -82,28 +89,39 @@ namespace Agario.Level_Set_Up
             Cam.transform.position = Player.transform.position;
         }
 
+        
+        
         private void CalculateSpawnRange()
         {
-            Transform cubeTrans = spawnZone.GetComponent<Transform>();
-            cubeCenter = spawnZone.GetComponent<Transform>().position;
+            var fieldTrans = spawnZone.GetComponent<Transform>();
+            fieldCenter = new Vector3(fieldTrans.position.x, fieldTrans.position.y, 0);
 
-            cubeSize.x = cubeTrans.localScale.x * spawnZone.size.x;
-            cubeSize.y = cubeTrans.localScale.y * spawnZone.size.y;
+            fieldSize.x = fieldTrans.localScale.x * spawnZone.size.x;
+            fieldSize.y = fieldTrans.localScale.y * spawnZone.size.y;
+            
+            Debug.Log("field size x: " + fieldSize.x);
+            Debug.Log("field size y: " + fieldSize.y);
         }
 
-        private void SpawnFood()
+        
+        
+        private void SpawnOrbsFood()
         {
-            Instantiate(foodPrefab, RandomPos(), Quaternion.identity, FoodHolder.transform);
+            Instantiate(foodPrefab, RandomPosition(), Quaternion.identity, FoodHolder.transform);
         }
 
-        private Vector3 RandomPos()
+        
+        
+        private Vector3 RandomPosition()
         {
-            Vector2 randomSpawn = new Vector3(Random.Range(-cubeSize.x / 2, cubeSize.x / 2),
-                Random.Range(-cubeSize.y / 2, cubeSize.y / 2), 0);
-            return randomSpawn + cubeCenter;
+            Vector2 randomSpawn = new Vector3(Random.Range(-fieldSize.x / 2, fieldSize.x / 2),
+                Random.Range(-fieldSize.y / 2, fieldSize.y / 2), 0);
+            return randomSpawn + fieldCenter;
         }
         
-        private IEnumerator RespawnUponDeath()
+        
+        
+        private IEnumerator RespawnUponDeath() // Respawn logic
         {
             onlyOnce = false;
             yield return new WaitForSeconds(RespawnTime);
