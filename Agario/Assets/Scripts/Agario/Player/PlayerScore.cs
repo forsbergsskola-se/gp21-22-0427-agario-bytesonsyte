@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -11,12 +10,14 @@ namespace Agario.Player
         [HideInInspector] public TextMeshProUGUI ScoreUI;
         private  TextMeshProUGUI HighScoreUI;
         public int StoredHighScore;
+        public bool ResetHighScorePlayerPrefs = false;
 
         private void Start()
         {
             Score = 0;
             ScoreUI = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
             HighScoreUI = GameObject.Find("High Score No").GetComponent<TextMeshProUGUI>();
+            ResetHighScoreCheck();
 
             StoredHighScore = PlayerPrefs.GetInt("High Score");
             Debug.Log("Player Prefs High Score = " + StoredHighScore);
@@ -43,9 +44,17 @@ namespace Agario.Player
             if (Score > StoredHighScore)
                 PlayerPrefs.SetInt("High Score", Score);
         }
-        
-        
-        
+
+
+
+        private void ResetHighScoreCheck()
+        {
+            if (!ResetHighScorePlayerPrefs) return;
+            PlayerPrefs.SetInt("High Score", Score);
+        }
+
+
+
         private static string ReverseIntToString(int score) // had an error where ui was reversing the output
         {
             var text = new string(score.ToString().Reverse().ToArray());
