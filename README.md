@@ -7,7 +7,9 @@
 - [x] Open Word Server implemented
 - [x] Open word Client implemented
 
-*comments: scenes and scripts for these are found within Agario project:* 
+***comments:***  
+
+*scenes and scripts for these are found within Agario project:*  
 >*Scenes -> Assignments*  
 >*Scripts -> Assignments*
 
@@ -21,7 +23,9 @@
 - [x] `PLAYER_SPAWN` instantiates player 
   - [x] to a `RANDOM_POSITION` 
 
-*comments: see Spawner.cs for spawning logic and PlayerMovement.cs for active player clamping logic*
+***comments:***  
+
+*see Spawner.cs for spawning logic and PlayerMovement.cs for active player clamping logic*
 
 #
 
@@ -33,7 +37,9 @@
 - [x] `MOUSE_POSITION` player moves towards mouse's `VECTOR_DIRECTION`
   - [ ] \(Optional) or `WASD_INPUT` used instead
 
-*comments: see CameraFollow.cs and PlayerMovement.cs. Spawner.cs uses prefabs for visuals *
+***comments:***  
+
+*see CameraFollow.cs and PlayerMovement.cs. Spawner.cs uses prefabs for visuals*
 
 #
 
@@ -46,8 +52,10 @@
   - [x] to `UPDATE_VISUALS` & grow in size
   - [x] and `INCREASE_SCORE` by one
 
-*comments: see Spawner.cs for SpawnFood() logic, which spawns a set amount within the playuing field & then more in an update if the orb/ food count falls below this inital set amount*  
-*Consume.cs handles orb/ food collection and updates the IncreaseScore function in PlayerScore.cs*
+***comments:***  
+
+- *see Spawner.cs for SpawnFood() logic, which spawns a set amount within the playuing field & then more in an update if the orb/ food count falls below this inital set amount*  
+- *Consume.cs handles orb/ food collection and updates the IncreaseScore function in PlayerScore.cs*
 
 #
 
@@ -60,11 +68,12 @@
 - [x] `PLAYER_NAMES` shows the names of each player on their circles 
   - [ ] + leaderboard entry 
 
-*comments:  
-Consume.cs uses collision to then compare player scales, then destroy rival if bigger than them and update Score.cs accordingly*  
-*Spawner.cs detects if players are destroyed and respawns accordingly*
-*Score.cs starts with score at 0 & keeps track of highscore for the leaderboard using PlayerPrefs* 
-*NameManager.cs sets inputfield entry for Player Name as a string in PlayerPrefs. Spawner.cs uses this data when instantiating Player*
+***comments:***  
+
+- *Consume.cs uses collision to then compare player scales, then destroy rival if bigger than them and update Score.cs accordingly*  
+- *Spawner.cs detects if players are destroyed and respawns accordingly*  
+- *Score.cs starts with score at 0 & keeps track of highscore for the leaderboard using PlayerPrefs*  
+- *NameManager.cs sets inputfield entry for Player Name as a string in PlayerPrefs. Spawner.cs uses this data when instantiating Player*
 
 
 #
@@ -78,7 +87,7 @@ Consume.cs uses collision to then compare player scales, then destroy rival if b
 - [ ] `CHEAT_PROTECTION` exists in some form
 - [ ] `INTERPOLATE` player positions to protect against transportation if lagging occurs
 
-*comments:*
+***comments:***  
 
 #
 
