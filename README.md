@@ -40,7 +40,7 @@
 - [x] `SPAWN_ORBS` instantiates orbs within map's bounds
   - [x] to a `RANDOM_POSITION`
   - [x] within an `UPDATE_LOOP`
-- [x] COLLECT_ORB player can eat these orbs
+- [x] `COLLECT_ORB` player can eat these orbs
   - [x] to `UPDATE_VISUALS` & grow in size
   - [x] and `INCREASE_SCORE` by one
 
