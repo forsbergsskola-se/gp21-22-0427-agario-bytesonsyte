@@ -60,9 +60,12 @@
 - [x] `PLAYER_NAMES` shows the names of each player on their circles 
   - [ ] + leaderboard entry 
 
-*comments: Consume.cs uses collision to then compare player scales, then destroy rival if bigger than them and update Score.cs accordingly*  
+*comments:  
+Consume.cs uses collision to then compare player scales, then destroy rival if bigger than them and update Score.cs accordingly*  
 *Spawner.cs detects if players are destroyed and respawns accordingly*
-*Score.cs starts with score at 0 & keeps track of highscore for the leaderboard*
+*Score.cs starts with score at 0 & keeps track of highscore for the leaderboard using PlayerPrefs* 
+*NameManager.cs sets inputfield entry for Player Name as a string in PlayerPrefs. Spawner.cs uses this data when instantiating Player*
+
 
 #
 
