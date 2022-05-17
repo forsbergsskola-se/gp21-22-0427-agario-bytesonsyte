@@ -54,7 +54,8 @@
 - [x] `PLAYER_RESPAWN` instantiates smaller player at random pos with 0 score
 - [x] `INCREASE_SCORE` of the bigger player with the smaller one's total score
 - [ ] `PLAYER_LEADERBOARD` tracks & ranks high scores of players
-- [ ] `PLAYER_NAMES` shows the names of each player on their circles + leaderboard entry 
+- [x] `PLAYER_NAMES` shows the names of each player on their circles 
+  - [ ] + leaderboard entry 
 
 *comments:*
 
