@@ -1,6 +1,7 @@
 using System;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Agario.Networking
 {
@@ -24,6 +25,11 @@ namespace Agario.Networking
                 Debug.Log("This instance already exits, so is being destroyed.");
                 Destroy(this); // only one instance can exist
             }
+            
+            if (SceneManager.GetActiveScene().name == "Agar.io")
+            {
+                
+            }
         }
 
         private void Start()
@@ -34,7 +40,7 @@ namespace Agario.Networking
 
         public class TCP
         {
-            private TcpClient socket;
+            public TcpClient socket;
             private NetworkStream stream;
             private byte[] receiveBuffer;
 
@@ -83,6 +89,15 @@ namespace Agario.Networking
                     Console.WriteLine($"Error receiving TCP data: {e}");
                     throw;
                 }
+            }
+            
+            
+            public void Disconnect()
+            {
+                socket.Close();
+                stream = null;
+                receiveBuffer = null;
+                socket = null;
             }
         }
     }

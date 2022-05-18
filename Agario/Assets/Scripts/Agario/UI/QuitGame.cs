@@ -1,3 +1,4 @@
+using Agario.Networking;
 using UnityEngine;
 
 namespace Agario.UI
@@ -6,6 +7,7 @@ namespace Agario.UI
     {
         public void QuitApplication()
         {
+            Client.instance.tcp.Disconnect();
             Application.Quit();
         }
     }

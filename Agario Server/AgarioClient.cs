@@ -33,7 +33,16 @@ namespace Agario_Server
                 stream = socket.GetStream();
                 receiveBuffer = new byte[dataBufferSize];
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
+            }
 
+            public void Disconnect()
+            {
+                socket.Close();
+                stream = null;
+                receiveBuffer = null;
+                socket = null;
+                Console.WriteLine($"Player with ID '{playerID}' disconnected");
+                AgarioServer.clients[playerID].TCPDisconnect();
             }
 
             private void ReceiveCallback(IAsyncResult ar)
@@ -42,7 +51,8 @@ namespace Agario_Server
                 {
                     var byteLength = stream.EndRead(ar); // no of bytes read from the stream
                     if (byteLength <= 0)
-                        return;
+                        AgarioServer.clients[playerID].TCPDisconnect();
+
 
                     var data = new byte[byteLength]; // bytes stored here if received
                     Array.Copy(receiveBuffer, data, byteLength);
@@ -53,9 +63,19 @@ namespace Agario_Server
                 catch (Exception e)
                 {
                     Console.WriteLine($"Error receiving TCP data: {e}");
-                    throw;
+                    AgarioServer.clients[playerID].TCPDisconnect();
                 }
             }
+
+
         }
+
+        public void TCPDisconnect()
+        {
+            Console.WriteLine($"{tcp.socket.Client.RemoteEndPoint} has disconnected.");
+            tcp.Disconnect();
+        }
+
     }
+
 }

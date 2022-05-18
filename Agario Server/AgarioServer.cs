@@ -9,7 +9,7 @@ namespace Agario_Server
         private static int Port { get; set; }
         private static TcpListener? tcpListener;
         private readonly StreamWriter StreamWriter;
-        private static readonly Dictionary<int, AgarioClient> clients = new Dictionary<int, AgarioClient>(); // stores clients using their IDs as  keys
+        public static Dictionary<int, AgarioClient> clients = new Dictionary<int, AgarioClient>(); // stores clients using their IDs as  keys
 
 
         public static void ServerStart(int maxPlayers, int port)
