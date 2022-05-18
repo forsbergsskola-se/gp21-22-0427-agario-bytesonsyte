@@ -80,7 +80,7 @@
 
 ### Agar.io Networking:
 
-- [ ] `CONNECT_GAME` for players to join server
+- [x] `CONNECT_GAME` for players to join server
 - [ ] `DISCONNECT_GAME` disconnects players from server
 - [ ] `CURRENTLY_CONNECTED_PLAYERS` tracks active players
 - [ ] `OTHER_PLAYERS_BROADCAST` updates player positions & scores to others
