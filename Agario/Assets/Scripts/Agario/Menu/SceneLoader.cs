@@ -1,14 +1,13 @@
-using Agario.Menu;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace Agario.Menu
 {
-    public void ChangeScene(string SceneName)
+    public class SceneLoader : MonoBehaviour
     {
-        var playerName = FindObjectOfType<NameManager>().PlayerName;
-        
-        if (playerName != "Enter Name...")
+        public void ChangeScene(string SceneName)
+        {
             SceneManager.LoadScene(SceneName);
+        }
     }
 }
