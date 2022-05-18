@@ -370,7 +370,8 @@ GameObject:
   - component: {fileID: 2025149704271333497}
   - component: {fileID: 2025149704271333496}
   - component: {fileID: 2025149704271333495}
-  - component: {fileID: 620049194}
+  - component: {fileID: 5550578452439094415}
+  - component: {fileID: 1798314385}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -481,9 +482,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620049194}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 5550578452439094415}
+        m_TargetAssemblyTypeName: Agario.Networking.ConnectToServer, Assembly-CSharp
+        m_MethodName: ConnectPlayerToServer
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -493,7 +494,7 @@ MonoBehaviour:
           m_StringArgument: Agario
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &620049194
+--- !u!114 &5550578452439094415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -502,9 +503,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2025149704271333493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e87c09ab8a19cb40947132b94817497, type: 3}
+  m_Script: {fileID: 11500000, guid: 12317d8f3e3f916449a82230eb3033b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1798314385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025149704271333493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe487d556d8da644ebb96617c194f5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localIP: 127.0.0.1
+  port: 5757
+  playerID: 0
 --- !u!1 &2025149704618077759
 GameObject:
   m_ObjectHideFlags: 0
