@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="299b5df5-291e-4117-8a3f-d03b70fb63c7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Agario/Assets/Prefabs/Agario/Field.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Agario/Assets/Prefabs/Agario/Field.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Agario_Server/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Agario_Server/v16/.suo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +72,7 @@
       <updated>1652893242889</updated>
       <workItem from="1652893245121" duration="915000" />
       <workItem from="1652894256873" duration="615000" />
+      <workItem from="1652954701088" duration="20000" />
     </task>
     <servers />
   </component>
