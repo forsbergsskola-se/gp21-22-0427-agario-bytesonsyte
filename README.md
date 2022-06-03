@@ -81,8 +81,8 @@
 ### Agar.io Networking:
 
 - [x] `CONNECT_GAME` for players to join server
-- [ ] `DISCONNECT_GAME` disconnects players from server
-- [ ] `CURRENTLY_CONNECTED_PLAYERS` tracks active players
+- [x] `DISCONNECT_GAME` disconnects players from server
+- [x] `CURRENTLY_CONNECTED_PLAYERS` tracks active players
 - [ ] `OTHER_PLAYERS_BROADCAST` updates player positions & scores to others
 - [ ] `CHEAT_PROTECTION` exists in some form
 - [ ] `INTERPOLATE` player positions to protect against transportation if lagging occurs
